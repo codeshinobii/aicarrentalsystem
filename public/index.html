@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliRide - AI Car Rental</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Added Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Removed Axios script tag if quantumApiRequest uses fetch -->
+</head>
+<body>
+    <!-- Futuristic Background Elements -->
+    <div class="bg-elements">
+        <!-- Gradient is applied via body::before in CSS -->
+        <!-- Optional: Add canvas here if re-implementing particle network -->
+        <!-- <div id="particle-network-container"></div> -->
+    </div>
+
+    <!-- Enhanced Loading Overlay -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <div class="loading-text">Initializing AI System Interface...</div>
+    </div>
+
+    <!-- Modern Header -->
+    <header class="glass-header modern-header">
+        <a href="#" id="logo-link" class="logo hover-effect" data-section="landing-section">Intelli<span class="logo-accent">Ride</span></a>
+        <div class="header-right">
+            <nav>
+                <button id="nav-cars" class="nav-btn hover-effect">Browse Cars</button>
+                <button id="nav-signin" class="nav-btn hover-effect nav-logged-out">Sign In</button>
+                <button id="nav-account" class="nav-btn hover-effect nav-logged-in" style="display: none;">My Account</button>
+                <button id="nav-admin" class="nav-btn hover-effect nav-admin" style="display: none;">Admin Panel</button>
+                <button id="nav-logout" class="nav-btn hover-effect nav-logged-in" style="display: none;">Logout</button>
+                <span id="user-greeting" class="nav-logged-in" style="display: none; align-self: center; margin-left: 15px; font-weight: 500;"></span>
+            </nav>
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle hover-effect" aria-label="Toggle theme">
+                <span class="theme-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <!-- ========================= Landing Page Section ========================= -->
+        <section id="landing-section" class="page-section" style="display: block;">
+            <!-- Hero Section -->
+             <div class="hero-section-v2">
+                 <div class="hero-content-v2">
+                     <div class="hero-text-content">
+                         <h1 class="hero-headline-v2 animate__animated animate__fadeInLeft">Rent Differently. <span class="logo-accent">AI Finds Your Ideal Ride.</span></h1>
+                         <p class="hero-tagline-v2 animate__animated animate__fadeInLeft animate__delay-05s">Tell us your trip, we'll handle the match. Distance, passengers, purpose – our AI analyzes it all for the perfect, efficient rental.</p>
+                         <div class="hero-cta-group animate__animated animate__fadeInLeft animate__delay-1s">
+                             <button id="cta-hero-explore" class="btn btn-primary ai-btn hover-effect">
+                                 Explore Full Fleet <i class="fas fa-arrow-right"></i>
+                             </button>
+                         </div>
+                     </div>
+                     <div class="hero-image-content animate__animated animate__fadeInRight animate__delay-05s">
+                         <!-- Use a more dynamic/abstract image if possible -->
+                         <img src="images/sleek-car-hero.png" alt="IntelliRide AI Concept" class="hero-car-image">
+                     </div>
+                 </div>
+             </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2 class="section-title">Why Choose IntelliRide?</h2>
+                <div class="features-grid">
+                    <div class="feature-card animate__animated animate__fadeInUp">
+                        <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                        <h3 class="feature-title">AI-Powered Precision</h3>
+                        <p class="feature-description">Our advanced AI matches you with the perfect vehicle based on your unique needs and preferences.</p>
+                    </div>
+                    <div class="feature-card animate__animated animate__fadeInUp animate__delay-05s">
+                        <div class="feature-icon"><i class="fas fa-car-side"></i></div>
+                        <h3 class="feature-title">Vast & Diverse Fleet</h3>
+                        <p class="feature-description">From efficient EVs to spacious SUVs, find the ideal car for any journey in our extensive selection.</p>
+                    </div>
+                    <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h3 class="feature-title">Seamless Booking</h3>
+                        <p class="feature-description">Rent your next car in minutes with our intuitive online platform and secure checkout process.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =============================================== -->
+            <!-- === NEW Vehicle Types Section =============== -->
+            <!-- =============================================== -->
+            <section id="vehicle-types-section" class="page-section animate__animated animate__fadeInUp">
+                <h2 class="section-title">Vehicles for Every Journey</h2>
+                <div class="vehicle-types-grid">
+                    <!-- Item 1: Family/Van -->
+                    <div class="vehicle-type-item animate__animated animate__fadeInUp">
+                        <div class="vehicle-type-image">
+                            <img src="images/fleet-van.png" alt="Spacious van for family trips">
+                        </div>
+                        <div class="vehicle-type-content">
+                            <h3>Family & Group Travel</h3>
+                            <p>Spacious vans and SUVs perfect for family vacations, group outings, or extra luggage space.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Off-road/SUV -->
+                    <div class="vehicle-type-item animate__animated animate__fadeInUp animate__delay-03s">
+                        <div class="vehicle-type-image">
+                            <img src="images/fleet-suv.webp" alt="Rugged SUV for off-road adventures">
+                        </div>
+                        <div class="vehicle-type-content">
+                            <h3>Adventure Ready</h3>
+                            <p>Capable SUVs and 4x4s designed to handle tougher terrains and exploration off the beaten path.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Electric -->
+                    <div class="vehicle-type-item animate__animated animate__fadeInUp animate__delay-06s">
+                        <div class="vehicle-type-image">
+                             <img src="images/fleet-budget.jpg" alt="Modern electric vehicle">
+                        </div>
+                        <div class="vehicle-type-content">
+                            <h3>Eco-Friendly Driving</h3>
+                            <p>Choose from our growing fleet of electric vehicles for a quiet, zero-emission, sustainable ride.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Economy -->
+                    <div class="vehicle-type-item animate__animated animate__fadeInUp animate__delay-09s">
+                        <div class="vehicle-type-image">
+                            <img src="images/fleet-hatchback.jpg" alt="Fuel-efficient economy car">
+                        </div>
+                        <div class="vehicle-type-content">
+                            <h3>Budget Conscious</h3>
+                            <p>Fuel-efficient and affordable compact cars ideal for city driving, commuting, or saving on fuel.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =============================================== -->
+            <!-- === END Vehicle Types Section =============== -->
+            <!-- =============================================== -->
+
+            <!-- How It Works Section -->
+            <div class="how-it-works-section">
+                 <h2 class="section-title">Get Rolling in 3 Easy Steps</h2>
+                 <div class="steps-container">
+                    <div class="step-card animate__animated animate__fadeInUp">
+                         <div class="step-icon"><i class="fas fa-search"></i></div>
+                         <h3 class="step-title">Search & Filter</h3>
+                         <p class="step-description">Use our smart filters or let AI guide you to find available cars.</p>
+                    </div>
+                    <div class="step-card animate__animated animate__fadeInUp animate__delay-05s">
+                         <div class="step-icon"><i class="fas fa-mouse-pointer"></i></div>
+                         <h3 class="step-title">Select & Customize</h3>
+                         <p class="step-description">Choose your perfect vehicle and select rental dates and locations.</p>
+                    </div>
+                    <div class="step-card animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                        <h3 class="step-title">Book & Drive</h3>
+                        <p class="step-description">Confirm your booking securely and get ready for your journey!</p>
+                    </div>
+                 </div>
+            </div>
+
+             <!-- Final CTA Section (Simplified) -->
+             <section class="final-cta-section">
+                 <div class="cta-content-container">
+                     <h2 class="cta-headline animate__animated animate__fadeInUp">Ready to Experience the Future of Rental?</h2>
+                     <p class="cta-description animate__animated animate__fadeInUp animate__delay-05s">Join IntelliRide today and discover a smarter, simpler way to rent the perfect vehicle, powered by AI.</p>
+                     <div class="cta-buttons animate__animated animate__fadeInUp animate__delay-1s">
+                         <a href="#" class="btn btn-primary ai-btn hover-effect" id="cta-browse-cars"><i class="fas fa-car"></i> Browse Cars</a>
+                         <a href="#" class="btn btn-secondary hover-effect" id="cta-signup"><i class="fas fa-user-plus"></i> Sign Up Now</a>
+                     </div>
+                 </div>
+             </section>
+
+        </section>
+        <!-- ========================= End Landing Page Section ========================= -->
+
+        <!-- Modern Sign In Section -->
+        <section id="signin-section" class="page-section" style="display: none;">
+             <div class="signin-container animate__animated animate__fadeIn">
+                <!-- Left Column: Info/Description -->
+                <div class="signin-info">
+                    <h2 class="info-title">Intelli<span class="logo-accent">Ride</span></h2>
+                    <p class="info-subtitle">Experience the Future of Car Rentals.</p>
+                    <p class="info-text">
+                         Our advanced AI analyzes your trip details – distance, passengers, purpose, even road types –
+                         to recommend the most efficient and suitable vehicle from our curated fleet.
+                         Save time, save fuel, and drive smarter.
+                    </p>
+                    <div class="info-icon">
+                         <i class="fas fa-cogs"></i><i class="fas fa-route"></i>
+                    </div>
+                    <p class="back-link-container">
+                         <a href="#" id="back-to-home-link" class="link-btn hover-effect">
+                             <i class="fas fa-arrow-left"></i> Back to Fleet
+                         </a>
+                    </p>
+                </div>
+
+                <!-- Right Column: Login/Register Form Card -->
+                <div class="signin-form-area">
+                    <div id="signin-card" class="glass-card modern-auth-card animate__animated animate__fadeInRight">
+                         <div class="auth-tabs">
+                            <button id="auth-tab-signin" class="auth-tab-btn active" data-form="login-form">Sign In</button>
+                            <button id="auth-tab-signup" class="auth-tab-btn" data-form="register-form">Sign Up</button>
+                         </div>
+
+                        <form id="login-form" novalidate class="auth-form active">
+                            <h2 class="form-title-main">Welcome Back</h2>
+                            <p class="form-subtitle">Sign in to access your account.</p>
+                            <div class="form-group icon-input">
+                                <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                <input type="email" id="login-email" required class="input-field" placeholder="Email Address">
+                                <span class="validation-message"></span>
+                            </div>
+                            <div class="form-group icon-input">
+                                 <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="login-password" required class="input-field" placeholder="Password">
+                                <span class="validation-message"></span>
+                                <div class="forgot-password-link-container">
+                                    <a href="#" id="forgot-password-link" class="link-btn hover-effect">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary ai-btn full-width hover-effect">Sign In</button>
+                            <p id="login-error" class="error-message"></p>
+                        </form>
+
+                        <form id="register-form" novalidate class="auth-form" style="display: none;">
+                             <h2 class="form-title-main">Create Account</h2>
+                             <p class="form-subtitle">Get started with IntelliRide.</p>
+                             <div class="form-group icon-input">
+                                 <span class="input-icon"><i class="fas fa-user"></i></span>
+                                <input type="text" id="register-name" required class="input-field" placeholder="Full Name">
+                                <span class="validation-message"></span>
+                            </div>
+                            <div class="form-group icon-input">
+                                 <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                <input type="email" id="register-email" required class="input-field" placeholder="Email Address">
+                                <span class="validation-message"></span>
+                            </div>
+                            <div class="form-group icon-input">
+                                 <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="register-password" required minlength="8" class="input-field" placeholder="Password (min. 8 characters)">
+                                <span class="validation-message"></span>
+                            </div>
+                             <div class="form-group icon-input">
+                                 <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                <input type="password" id="register-confirm-password" required class="input-field" placeholder="Confirm Password">
+                                <span class="validation-message"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary ai-btn full-width hover-effect">Sign Up</button>
+                            <p id="register-error" class="error-message"></p>
+                         </form>
+
+                         <p class="terms-privacy-text">
+                             By signing up, you agree to our
+                             <a href="#" class="hover-effect" id="terms-link">Terms</a> & <a href="#" class="hover-effect" id="privacy-link">Privacy Policy</a>.
+                         </p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Car Listing -->
+        <section id="cars-section" class="page-section fleet-section">
+            <h2 class="section-title animate__animated animate__fadeIn">Unlock Your Perfect Ride with AI Precision</h2>
+            <p class="fleet-intro animate__animated animate__fadeIn">
+                Refine your search below. Add trip details and let our AI find the most efficient and suitable car for your exact needs!
+            </p>
+
+            <!-- Filters using the modern panel style -->
+            <div id="car-filters" class="glass-card filter-bar animate__animated animate__fadeIn">
+                 <div class="filter-controls-wrapper">
+                    <div class="form-group">
+                        <label for="filter-location">Location:</label>
+                        <select id="filter-location" class="input-field hover-effect">
+                            <option value="">Any Location</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-passengers">Passengers:</label>
+                        <input type="number" id="filter-passengers" min="1" placeholder="Any" class="input-field hover-effect">
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-distance">Est. Distance (km):</label>
+                        <input type="number" id="filter-distance" min="0" placeholder="Optional" class="input-field hover-effect">
+                    </div>
+                     <div class="form-group">
+                        <label for="filter-purpose">Purpose:</label>
+                        <select id="filter-purpose" class="input-field hover-effect">
+                            <option value="">Any</option>
+                            <option value="business">Business</option>
+                            <option value="leisure">Leisure/Vacation</option>
+                            <option value="family">Family Trip</option>
+                            <option value="commute">Commuting</option>
+                            <option value="road_trip">Road Trip</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="filter-fuel-priority">Fuel Priority:</label>
+                        <select id="filter-fuel-priority" class="input-field hover-effect">
+                            <option value="">Any</option>
+                            <option value="petrol">Petrol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                     <div class="filter-actions-inline">
+                        <button id="apply-filters-btn" class="btn btn-primary ai-btn hover-effect">Apply</button>
+                        <button id="reset-filters-btn" class="btn btn-secondary hover-effect">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modified View Options Bar -->
+            <div class="view-options-bar animate__animated animate__fadeIn">
+                 <span id="car-count-display" class="car-count-info">Loading...</span>
+                 <div class="view-options-right">
+                    <div class="sort-controls">
+                        <label for="sort-cars">Sort By:</label>
+                        <select id="sort-cars" class="input-field hover-effect">
+                            <option value="ai_recommended" selected>AI Recommended</option>
+                            <option value="-createdAt">Newest First</option>
+                            <option value="daily_rate">Price (Low to High)</option>
+                            <option value="-daily_rate">Price (High to Low)</option>
+                            <option value="year">Year (Old to New)</option>
+                            <option value="-year">Year (New to Old)</option>
+                            <option value="averageRating">Rating (High to Low)</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle-buttons">
+                        <button id="view-card-btn" class="view-btn active hover-effect" title="Card View">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button id="view-list-btn" class="view-btn hover-effect" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                 </div>
+            </div>
+
+            <div id="car-list" class="car-grid animate__animated animate__fadeIn">
+                <div class="loading-placeholder">Scanning for available vehicles... <div class="spinner-small"></div></div>
+            </div>
+
+            <div id="pagination-controls" class="pagination-container animate__animated animate__fadeInUp">
+                 <!-- Pagination buttons will be injected here -->
+            </div>
+
+        </section>
+
+        <!-- Booking Form -->
+        <section id="booking-section" class="page-section glass-card" style="display: none;">
+            <div class="container animate__animated animate__fadeIn">
+                <h2 class="section-title">Create Your Booking</h2>
+                <form id="booking-form" novalidate>
+                    <input type="hidden" id="booking-car-id">
+                    <p class="booking-info">Requesting booking for: <strong id="booking-car-details">...</strong></p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-start-date">Start Date:</label>
+                            <input type="date" id="booking-start-date" required class="input-field hover-effect">
+                            <span class="validation-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-end-date">End Date:</label>
+                            <input type="date" id="booking-end-date" required class="input-field hover-effect">
+                            <span class="validation-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-pickup-location">Pickup Location:</label>
+                            <select id="booking-pickup-location" required class="input-field hover-effect">
+                                <option value="" disabled selected>-- Select Location --</option>
+                            </select>
+                            <span class="validation-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-dropoff-location">Dropoff Location:</label>
+                            <select id="booking-dropoff-location" required class="input-field hover-effect">
+                                <option value="" disabled selected>-- Select Location --</option>
+                            </select>
+                            <span class="validation-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary ai-btn hover-effect">Request Booking <i class="fas fa-check"></i></button>
+                        <button type="button" id="cancel-booking-btn" class="btn btn-secondary hover-effect">Cancel <i class="fas fa-times"></i></button>
+                    </div>
+                     <p id="booking-error" class="error-message"></p>
+                     <p id="booking-success" class="success-message"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- User Account Section -->
+        <section id="account-section" class="page-section" style="display: none;">
+             <h2 id="account-greeting" class="section-title animate__animated animate__fadeIn">User Dashboard</h2>
+             <div class="account-container animate__animated animate__fadeInUp">
+                <!-- Account Sidebar with modern panel style -->
+                <div class="account-sidebar glass-card">
+                    <div class="user-profile">
+                        <div class="avatar ai-glow"><i class="fas fa-user-circle"></i></div>
+                        <h3 id="user-display-name">User Name</h3>
+                        <p id="user-email">user@example.com</p>
+                    </div>
+                    <nav class="account-nav">
+                        <button class="account-nav-btn hover-effect active" data-tab="account-bookings-tab">
+                            <i class="fas fa-calendar-alt"></i> My Bookings
+                        </button>
+                        <button class="account-nav-btn hover-effect" data-tab="account-profile-tab">
+                            <i class="fas fa-user-cog"></i> Profile Settings
+                        </button>
+                        <button class="account-nav-btn hover-effect" data-tab="account-ai-preferences-tab">
+                            <i class="fas fa-brain"></i> AI Preferences
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Account Content Area -->
+                <div class="account-content">
+                    <!-- Bookings Tab -->
+                    <div id="account-bookings-tab" class="account-tab active animate__animated animate__fadeIn">
+                        <div id="booking-snapshot" class="glass-card data-card hover-effect">
+                            <h3>Next Booking</h3>
+                            <p id="snapshot-content">Loading booking data...</p>
+                        </div>
+                        <div class="bookings-section">
+                            <h3>Upcoming Bookings</h3>
+                            <div id="upcoming-bookings-list" class="bookings-grid"></div>
+                        </div>
+                        <div class="bookings-section">
+                            <h3>Past Bookings</h3>
+                            <div id="past-bookings-list" class="bookings-grid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Tab - Apply panel style -->
+                    <div id="account-profile-tab" class="account-tab glass-card animate__animated animate__fadeIn" style="display:none;">
+                        <form id="edit-profile-form">
+                            <h3>Update Profile</h3>
+                             <div class="form-group">
+                                <label for="profile-name">Display Name</label>
+                                <input type="text" id="profile-name" required class="input-field hover-effect">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Contact Email</label>
+                                <input type="email" id="profile-email" required class="input-field hover-effect">
+                            </div>
+                            <button type="submit" class="btn btn-primary ai-btn hover-effect">Update Profile <i class="fas fa-save"></i></button>
+                            <p id="edit-profile-error" class="error-message"></p>
+                            <p id="edit-profile-success" class="success-message"></p>
+                        </form>
+                        <hr class="section-divider">
+                        <form id="change-password-form">
+                            <h3>Update Password</h3>
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" required class="input-field hover-effect">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" minlength="8" required class="input-field hover-effect">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" required class="input-field hover-effect">
+                            </div>
+                            <button type="submit" class="btn btn-primary ai-btn hover-effect">Change Password <i class="fas fa-key"></i></button>
+                            <p id="change-password-error" class="error-message"></p>
+                            <p id="change-password-success" class="success-message"></p>
+                        </form>
+                    </div>
+
+                    <!-- AI Preferences Tab - Apply panel style -->
+                    <div id="account-ai-preferences-tab" class="account-tab glass-card animate__animated animate__fadeIn" style="display:none;">
+                        <form id="ai-preferences-form">
+                            <h3>Configure AI Preferences</h3>
+                            <p>Tune the AI parameters for optimal vehicle suggestions.</p>
+                            <div class="form-group">
+                                <label for="ai-pref-passengers">Default Passengers</label>
+                                <input type="number" id="ai-pref-passengers" min="1" max="10" class="input-field hover-effect">
+                            </div>
+                            <div class="form-group">
+                                <label for="ai-pref-car-type">Preferred Vehicle Type</label>
+                                <select id="ai-pref-car-type" class="input-field hover-effect">
+                                    <option value="">No Preference</option>
+                                    <option value="sedan">Sedan</option>
+                                    <option value="suv">SUV</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="luxury">Luxury</option>
+                                    <option value="compact">Compact</option>
+                                    <option value="van">Van/Minivan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ai-pref-use-case">Primary Use Case</label>
+                                <select id="ai-pref-use-case" class="input-field hover-effect">
+                                    <option value="">Adaptive</option>
+                                    <option value="business">Business Travel</option>
+                                    <option value="family">Family Trip</option>
+                                    <option value="leisure">Leisure / Vacation</option>
+                                    <option value="commute">Commuting</option>
+                                     <option value="road_trip">Road Trip</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ai-pref-fuel-pref">Fuel Preference</label>
+                                <select id="ai-pref-fuel-pref" class="input-field hover-effect">
+                                    <option value="">Any</option>
+                                    <option value="petrol">Petrol (Gasoline)</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="electric">Electric</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary ai-btn hover-effect">Save Preferences <i class="fas fa-cogs"></i></button>
+                            <p id="ai-prefs-error" class="error-message"></p>
+                            <p id="ai-prefs-success" class="success-message"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section id="checkout-section" class="page-section glass-card" style="display: none;">
+            <div class="container animate__animated animate__fadeIn">
+                 <h2 class="section-title">Confirm Payment</h2>
+                <div id="checkout-booking-summary" class="booking-summary glass-card">
+                    <p><strong>Booking Ref:</strong> <span id="checkout-booking-ref">...</span></p>
+                    <p><strong>Vehicle:</strong> <span id="checkout-car-details">...</span></p>
+                    <p><strong>Duration:</strong> <span id="checkout-booking-dates">...</span></p>
+                    <p class="checkout-total"><strong>Total Cost:</strong> $<span id="checkout-booking-cost">...</span> TZS</p>
+                </div>
+
+                <form id="checkout-form" class="checkout-form" novalidate>
+                    <h3>Enter Payment Details (Simulation)</h3>
+                    <p class="disclaimer"><em>Simulation Mode Active: Utilize test credentials only.</em></p>
+                    <input type="hidden" id="checkout-booking-id" name="bookingId">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" name="cardNumber" placeholder="---- ---- ---- ----" required class="input-field credit-card hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="expiry-date">Expiry Date (MM/YY)</label>
+                            <input type="text" id="expiry-date" name="expiryDate" placeholder="MM / YY" required class="input-field card-expiry hover-effect">
+                            <span class="validation-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" name="cvc" placeholder="---" required class="input-field card-cvc hover-effect">
+                            <span class="validation-message"></span>
+                        </div>
+                    </div>
+                    <p id="checkout-error" class="error-message"></p>
+                    <p id="checkout-success" class="success-message"></p>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary ai-btn hover-effect">Confirm Payment <i class="fas fa-lock"></i></button>
+                        <button type="button" id="cancel-checkout-btn" class="btn btn-secondary hover-effect">Cancel <i class="fas fa-ban"></i></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin-section" class="page-section nav-admin" style="display: none;">
+            <h2 class="section-title animate__animated animate__fadeIn">Admin Control Panel</h2>
+            <div class="admin-dashboard animate__animated animate__fadeInUp">
+                <!-- Admin Sidebar - panel style -->
+                <div class="admin-sidebar glass-card">
+                    <div class="admin-profile">
+                        <div class="admin-avatar ai-glow"><i class="fas fa-user-shield"></i></div>
+                        <h3>Control Panel</h3>
+                        <p>System Authority</p>
+                    </div>
+                    <nav class="admin-nav">
+                        <button class="admin-nav-btn hover-effect active" data-panel="admin-overview-section">
+                            <i class="fas fa-tachometer-alt"></i> Overview
+                        </button>
+                        <button class="admin-nav-btn hover-effect" data-panel="admin-user-list-panel">
+                            <i class="fas fa-users-cog"></i> Users
+                        </button>
+                        <button class="admin-nav-btn hover-effect" data-panel="admin-location-management">
+                            <i class="fas fa-map-marked-alt"></i> Locations
+                        </button>
+                        <button class="admin-nav-btn hover-effect" data-panel="admin-car-management">
+                            <i class="fas fa-car-side"></i> Fleet
+                        </button>
+                        <button class="admin-nav-btn hover-effect" data-panel="admin-booking-management">
+                            <i class="fas fa-calendar-check"></i> Bookings
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Admin Content Area -->
+                <div class="admin-content">
+                    <!-- Overview Panel -->
+                    <div id="admin-overview-section" class="admin-panel active animate__animated animate__fadeIn">
+                        <h2>Dashboard Overview</h2>
+                        <div class="overview-metrics">
+                            <div class="metric-card glass-card hover-effect">
+                                <h4>Total Revenue</h4>
+                                <p>$<span id="overview-total-revenue">--</span></p>
+                                <i class="fas fa-dollar-sign metric-icon"></i>
+                            </div>
+                             <div class="metric-card glass-card hover-effect">
+                                <h4>Active Bookings</h4>
+                                <p><span id="overview-active-bookings">--</span></p>
+                                <i class="fas fa-route metric-icon"></i>
+                            </div>
+                            <div class="metric-card glass-card hover-effect">
+                                <h4>Registered Users</h4>
+                                <p><span id="overview-total-users">--</span></p>
+                                <i class="fas fa-users metric-icon"></i>
+                            </div>
+                             <div class="metric-card glass-card hover-effect">
+                                <h4>Fleet Vehicles</h4>
+                                <p><span id="overview-total-cars">--</span></p>
+                                <i class="fas fa-car metric-icon"></i>
+                            </div>
+                        </div>
+                        <div class="recent-activity glass-card data-card">
+                            <h4>Recent Bookings</h4>
+                            <ul id="overview-recent-bookings">
+                                <li>Loading real-time data... <div class="spinner-small"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- User Management Panel -->
+                    <div id="admin-user-list-panel" class="admin-panel glass-card animate__animated animate__fadeIn" style="display:none;">
+                        <div class="panel-header">
+                            <h2>User Management</h2>
+                            <div class="panel-actions">
+                                <button id="admin-add-user-btn" class="btn btn-primary ai-btn hover-effect"><i class="fas fa-plus"></i> Add User</button>
+                            </div>
+                        </div>
+                        <div class="table-search-bar">
+                            <input type="text" id="admin-user-search" placeholder="Search users by name or email..." class="input-field hover-effect">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div id="admin-user-list" class="admin-table-container">
+                            <p>Loading user data...</p>
+                        </div>
+                    </div>
+
+                    <!-- Location Management Panel -->
+                    <div id="admin-location-management" class="admin-panel glass-card animate__animated animate__fadeIn" style="display:none;">
+                         <div class="panel-header">
+                            <h2>Location Management</h2>
+                            <div class="panel-actions">
+                                <button id="admin-add-location-btn" class="btn btn-primary ai-btn hover-effect"><i class="fas fa-plus"></i> Add Location</button>
+                            </div>
+                        </div>
+                         <div class="table-search-bar">
+                            <input type="text" id="admin-location-search" placeholder="Search locations..." class="input-field hover-effect">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div id="admin-location-list" class="admin-table-container">
+                             <p>Loading location data...</p>
+                        </div>
+                    </div>
+
+                    <!-- Car Management Panel -->
+                     <div id="admin-car-management" class="admin-panel glass-card animate__animated animate__fadeIn" style="display:none;">
+                        <div class="panel-header">
+                            <h2>Fleet Management</h2>
+                            <div class="panel-actions">
+                                <button id="admin-add-car-btn" class="btn btn-primary ai-btn hover-effect"><i class="fas fa-plus"></i> Add Vehicle</button>
+                            </div>
+                        </div>
+                        <div class="table-search-bar">
+                            <input type="text" id="admin-car-search" placeholder="Search cars..." class="input-field hover-effect">
+                             <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <div id="admin-car-list" class="admin-table-container">
+                            <p>Loading fleet data...</p>
+                        </div>
+                    </div>
+
+                    <!-- Booking Management Panel -->
+                     <div id="admin-booking-management" class="admin-panel glass-card animate__animated animate__fadeIn" style="display:none;">
+                         <div class="panel-header">
+                            <h2>Booking Management</h2>
+                            <div class="panel-actions">
+                                <button id="admin-create-booking-btn" class="btn btn-primary ai-btn hover-effect"><i class="fas fa-plus"></i> Create Booking</button>
+                            </div>
+                        </div>
+                         <div class="booking-filters filter-controls">
+                             <div class="form-group">
+                                <label for="admin-filter-booking-status">Status:</label>
+                                <select id="admin-filter-booking-status" class="input-field hover-effect">
+                                    <option value="">All</option>
+                                    <option value="pending_payment">Pending Payment</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="active">Active</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                             <div class="form-group">
+                                 <label for="admin-booking-search">Search:</label>
+                                <input type="text" id="admin-booking-search" placeholder="Ref, User, Car..." class="input-field hover-effect">
+                                 <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <button id="admin-apply-booking-filters-btn" class="btn btn-secondary hover-effect">Apply Filters</button>
+                        </div>
+                        <div id="admin-booking-list" class="admin-table-container">
+                             <p>Loading booking logs...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals with Modern Panel Style and Animation -->
+    <!-- Edit/Add User Modal -->
+    <div id="user-modal" class="modal" style="display: none;">
+        <div class="modal-content glass-card animate__animated animate__zoomIn">
+            <span class="close-btn hover-effect" id="close-user-modal">×</span>
+            <h2 id="user-modal-title">User Configuration</h2>
+            <form id="user-modal-form" novalidate>
+                <input type="hidden" id="edit-user-id">
+                <div class="form-group">
+                    <label for="modal-user-name">Name:</label>
+                    <input type="text" id="modal-user-name" required class="input-field hover-effect">
+                    <span class="validation-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="modal-user-email">Email:</label>
+                    <input type="email" id="modal-user-email" required class="input-field hover-effect">
+                    <span class="validation-message"></span>
+                </div>
+                <div class="form-group" id="password-field-group">
+                    <label for="modal-user-password">Password:</label>
+                    <input type="password" id="modal-user-password" class="input-field hover-effect" placeholder="Leave blank to keep unchanged">
+                    <span class="validation-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="modal-user-role">Role:</label>
+                    <select id="modal-user-role" required class="input-field hover-effect">
+                        <option value="customer">Customer</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <span class="validation-message"></span>
+                </div>
+                <button type="submit" class="btn btn-primary ai-btn hover-effect">Save Changes <i class="fas fa-save"></i></button>
+                <p id="user-modal-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit/Add Location Modal -->
+    <div id="location-modal" class="modal" style="display: none;">
+         <div class="modal-content glass-card animate__animated animate__zoomIn">
+            <span class="close-btn hover-effect" id="close-location-modal">×</span>
+            <h2 id="location-modal-title">Location Configuration</h2>
+            <form id="location-modal-form" novalidate>
+                <input type="hidden" id="edit-location-id">
+                <div class="form-group">
+                    <label for="modal-loc-address">Address:</label>
+                    <input type="text" id="modal-loc-address" required class="input-field hover-effect">
+                    <span class="validation-message"></span>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="modal-loc-city">City:</label>
+                        <input type="text" id="modal-loc-city" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-loc-state">State/Province:</label>
+                        <input type="text" id="modal-loc-state" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="modal-loc-country">Country:</label>
+                        <input type="text" id="modal-loc-country" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-loc-zip">Zip/Postal Code:</label>
+                        <input type="text" id="modal-loc-zip" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modal-loc-coords">Coordinates (Optional):</label>
+                    <input type="text" id="modal-loc-coords" placeholder="e.g., 40.7128, -74.0060" class="input-field hover-effect">
+                    <span class="validation-message"></span>
+                </div>
+                <button type="submit" class="btn btn-primary ai-btn hover-effect">Save Location <i class="fas fa-save"></i></button>
+                <p id="location-modal-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Car Modal -->
+    <div id="car-modal" class="modal" style="display: none;">
+        <div class="modal-content glass-card large animate__animated animate__zoomIn">
+            <span class="close-btn hover-effect" id="close-car-modal">×</span>
+            <h2 id="car-modal-title">Vehicle Configuration</h2>
+            <form id="car-modal-form" novalidate enctype="multipart/form-data">
+                 <input type="hidden" id="edit-car-id">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="modal-car-make">Make:</label>
+                            <input type="text" id="modal-car-make" required class="input-field hover-effect">
+                            <span class="validation-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-car-model">Model:</label>
+                            <input type="text" id="modal-car-model" required class="input-field hover-effect">
+                             <span class="validation-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-car-year">Year:</label>
+                            <input type="number" id="modal-car-year" required min="1980" max="2099" class="input-field hover-effect">
+                             <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-vin">VIN:</label>
+                            <input type="text" id="modal-car-vin" required pattern="[A-HJ-NPR-Z0-9]{17}" title="17 character VIN" class="input-field hover-effect">
+                             <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-category">Category:</label>
+                             <select id="modal-car-category" required class="input-field hover-effect">
+                                <option value="">Select Category</option>
+                            </select>
+                             <span class="validation-message"></span>
+                        </div>
+                    </div>
+                     <div class="form-column">
+                        <div class="form-group">
+                            <label for="modal-car-fuel">Fuel Type:</label>
+                            <select id="modal-car-fuel" required class="input-field hover-effect">
+                                <option value="">Select Fuel Type</option>
+                            </select>
+                             <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-capacity">Passenger Capacity:</label>
+                            <input type="number" id="modal-car-capacity" required min="1" max="15" class="input-field hover-effect">
+                             <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-transmission">Transmission:</label>
+                             <select id="modal-car-transmission" required class="input-field hover-effect">
+                                <option value="">Select Transmission</option>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                            </select>
+                            <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-rate">Daily Rate (TZS):</label>
+                            <input type="number" id="modal-car-rate" required min="0" step="1" class="input-field hover-effect">
+                             <span class="validation-message"></span>
+                        </div>
+                         <div class="form-group">
+                            <label for="modal-car-location">Current Location:</label>
+                            <select id="modal-car-location" required class="input-field hover-effect">
+                                <option value="">Select Location</option>
+                            </select>
+                             <span class="validation-message"></span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="form-group">
+                     <label for="modal-car-features">Features (comma-separated):</label>
+                     <input type="text" id="modal-car-features" placeholder="e.g., GPS, Sunroof, Bluetooth, AI Drive Assist" class="input-field hover-effect">
+                 </div>
+                 <div class="form-group-row">
+                     <div class="form-group">
+                         <label for="modal-car-images">Images (Select multiple):</label>
+                         <input type="file" id="modal-car-images" multiple accept="image/*" class="input-field file-input hover-effect">
+                         <div id="image-preview-container" class="image-previews"></div>
+                     </div>
+                     <div class="form-group">
+                         <label for="modal-car-availability">Availability Status:</label>
+                         <select id="modal-car-availability" required class="input-field hover-effect">
+                             <option value="available">Available</option>
+                             <option value="rented">Rented</option>
+                             <option value="maintenance">Maintenance</option>
+                         </select>
+                         <span class="validation-message"></span>
+                     </div>
+                 </div>
+
+                <button type="submit" class="btn btn-primary ai-btn hover-effect">Save Vehicle Data <i class="fas fa-save"></i></button>
+                <p id="car-modal-error" class="error-message"></p>
+                 <div id="car-modal-progress" class="progress-bar-container" style="display: none;">
+                    <div class="progress-bar"></div>
+                    <span>Uploading...</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Booking Modal -->
+    <div id="admin-view-booking-modal" class="modal" style="display: none;">
+        <div class="modal-content glass-card animate__animated animate__zoomIn">
+            <span class="close-btn hover-effect" id="close-view-booking-modal">×</span>
+            <h2>Booking Details (<span id="view-booking-id"></span>)</h2>
+            <div id="admin-view-booking-content" class="booking-details-view">
+                <p>Loading details... <div class="spinner-small"></div></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit/Create Booking Modal (Admin) -->
+    <div id="admin-edit-booking-modal" class="modal" style="display: none;">
+        <div class="modal-content glass-card large animate__animated animate__zoomIn">
+            <span class="close-btn hover-effect" id="close-edit-booking-modal">×</span>
+            <h2 id="admin-edit-booking-title">Configure Booking</h2>
+            <form id="admin-edit-booking-form" novalidate>
+                <input type="hidden" id="admin-edit-booking-id">
+                <div class="form-group">
+                    <label for="admin-booking-user-select">User:</label>
+                    <select id="admin-booking-user-select" required class="input-field searchable-select hover-effect">
+                        <option value="">-- Select User --</option>
+                    </select>
+                    <span class="validation-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="admin-booking-car-select">Vehicle:</label>
+                    <select id="admin-booking-car-select" required class="input-field searchable-select hover-effect">
+                        <option value="">-- Select Vehicle --</option>
+                    </select>
+                    <span class="validation-message"></span>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="admin-booking-start-date">Start Date:</label>
+                        <input type="date" id="admin-booking-start-date" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-booking-end-date">End Date:</label>
+                        <input type="date" id="admin-booking-end-date" required class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="admin-booking-pickup-location">Pickup Location:</label>
+                        <select id="admin-booking-pickup-location" required class="input-field hover-effect">
+                            <option value="" disabled selected>-- Select Location --</option>
+                        </select>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-booking-dropoff-location">Dropoff Location:</label>
+                        <select id="admin-booking-dropoff-location" required class="input-field hover-effect">
+                            <option value="" disabled selected>-- Select Location --</option>
+                        </select>
+                        <span class="validation-message"></span>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="admin-booking-status">Booking Status:</label>
+                        <select id="admin-booking-status" required class="input-field hover-effect">
+                            <option value="pending_payment">Pending Payment</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <span class="validation-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-booking-cost">Total Cost (TZS):</label>
+                        <input type="number" id="admin-booking-cost" step="1" placeholder="Auto-calculated or override" class="input-field hover-effect">
+                        <span class="validation-message"></span>
+                    </div>
+                 </div>
+
+                <button type="submit" class="btn btn-primary ai-btn hover-effect">Save Booking <i class="fas fa-save"></i></button>
+                <p id="admin-edit-booking-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer with Modern Panel Style -->
+    <footer class="main-footer glass-card">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#" class="logo hover-effect">Intelli<span class="logo-accent">Ride</span></a>
+                <p>© 2024 IntelliRide AI Systems. All rights reserved.</p>
+                 <p class="footer-tagline">Driving the Future of Mobility.</p>
+            </div>
+            <div class="footer-right">
+                <nav class="footer-nav">
+                    <a href="#" id="footer-nav-home" class="hover-effect">Home</a>
+                    <a href="#" id="footer-nav-cars" class="hover-effect">Fleet</a>
+                    <a href="#" id="footer-nav-terms" class="hover-effect">Terms</a>
+                    <a href="#" id="footer-nav-privacy" class="hover-effect">Privacy</a>
+                </nav>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="hover-effect"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" class="hover-effect"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" class="hover-effect"><i class="fab fa-instagram"></i></a>
+                     <a href="#" aria-label="LinkedIn" class="hover-effect"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Cursor Elements (Needs JS to function) -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Core Script - Changed to main.js module -->
+    <script type="module" src="js/main.js"></script>
+    <!-- Font Awesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>
